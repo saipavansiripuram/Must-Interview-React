@@ -6,66 +6,66 @@
   
    - Example: Consider a parent component `App` and two child components `Counter` and `ControlPanel`. The `Counter` component maintains its own state for the count, while the `ControlPanel` component has buttons to increment and decrement the count. Instead of managing the count state separately in both child components, we can lift the state up to the `App` component and pass the count value and functions to update the count as props to the child components.
 
-Let's consider a simple example in React, a popular JavaScript library for building user interfaces:
-
-Suppose you have two components: `ParentComponent` and `ChildComponent`. The `ChildComponent` needs to update its state based on user input, and this state needs to be shared with the `ParentComponent`. We can achieve this by "lifting up" the state from `ChildComponent` to `ParentComponent`.
-
-```jsx
-// ParentComponent.js
-import React, { useState } from 'react';
-import ChildComponent from './ChildComponent';
-
-function ParentComponent() {
-  // State lifted up from ChildComponent
-  const [childState, setChildState] = useState('');
-
-  // Function to handle state change
-  const handleStateChange = (newState) => {
-    setChildState(newState);
-  };
-
-  return (
-    <div>
-      <h1>Parent Component</h1>
-      <ChildComponent state={childState} onChange={handleStateChange} />
-    </div>
-  );
-}
-
-export default ParentComponent;
-```
-
-```jsx
-// ChildComponent.js
-import React from 'react';
-
-function ChildComponent({ state, onChange }) {
-  // Function to handle input change
-  const handleChange = (event) => {
-    const newState = event.target.value;
-    onChange(newState); // Lift state up to ParentComponent
-  };
-
-  return (
-    <div>
-      <h2>Child Component</h2>
-      <input type="text" value={state} onChange={handleChange} />
-    </div>
-  );
-}
-
-export default ChildComponent;
-```
-
-In this example:
-
-- The `ParentComponent` holds the state (`childState`) and passes it down to `ChildComponent` as a prop.
-- When the user types into the input field in `ChildComponent`, it calls the `onChange` function passed down from the `ParentComponent`, which updates the state in the `ParentComponent`.
-- As a result, the state is "lifted up" from `ChildComponent` to `ParentComponent`, allowing them to share and manage the state together.
-
-This pattern is particularly useful for managing shared state between multiple components or when components are deeply nested.
-
-
+      Let's consider a simple example in React, a popular JavaScript library for building user interfaces:
+      
+      Suppose you have two components: `ParentComponent` and `ChildComponent`. The `ChildComponent` needs to update its state based on user input, and this state needs to be shared with the `ParentComponent`. We can achieve this by "lifting up" the state from `ChildComponent` to `ParentComponent`.
+      
+      ```jsx
+      // ParentComponent.js
+      import React, { useState } from 'react';
+      import ChildComponent from './ChildComponent';
+      
+      function ParentComponent() {
+        // State lifted up from ChildComponent
+        const [childState, setChildState] = useState('');
+      
+        // Function to handle state change
+        const handleStateChange = (newState) => {
+          setChildState(newState);
+        };
+      
+        return (
+          <div>
+            <h1>Parent Component</h1>
+            <ChildComponent state={childState} onChange={handleStateChange} />
+          </div>
+        );
+      }
+      
+      export default ParentComponent;
+      ```
+      
+      ```jsx
+      // ChildComponent.js
+      import React from 'react';
+      
+      function ChildComponent({ state, onChange }) {
+        // Function to handle input change
+        const handleChange = (event) => {
+          const newState = event.target.value;
+          onChange(newState); // Lift state up to ParentComponent
+        };
+      
+        return (
+          <div>
+            <h2>Child Component</h2>
+            <input type="text" value={state} onChange={handleChange} />
+          </div>
+        );
+      }
+      
+      export default ChildComponent;
+      ```
+      
+      In this example:
+      
+      - The `ParentComponent` holds the state (`childState`) and passes it down to `ChildComponent` as a prop.
+      - When the user types into the input field in `ChildComponent`, it calls the `onChange` function passed down from the `ParentComponent`, which updates the state in the `ParentComponent`.
+      - As a result, the state is "lifted up" from `ChildComponent` to `ParentComponent`, allowing them to share and manage the state together.
+      
+      This pattern is particularly useful for managing shared state between multiple components or when components are deeply nested.
+      
+      
 2. **What is React context?**
    - React context provides a way to pass data through the component tree without having to pass props down manually at every level. It allows components to subscribe to a context and access its value without having to explicitly pass it through each level of the tree.
   - Example: Suppose you have a theme switcher functionality in your app. You can create a `ThemeContext` using React context, where the theme state (e.g., light or dark) and functions to toggle the theme are defined. Child components that need access to the theme can subscribe to the `ThemeContext` and dynamically update their styles based on the current theme.
