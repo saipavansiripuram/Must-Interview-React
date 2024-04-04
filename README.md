@@ -67,30 +67,30 @@
       
       
 2. **What is React context?**
-   - React context provides a way to pass data through the component tree without having to pass props down manually at every level. It allows components to subscribe to a context and access its value without having to explicitly pass it through each level of the tree.
-  - Example: Suppose you have a theme switcher functionality in your app. You can create a `ThemeContext` using React context, where the theme state (e.g., light or dark) and functions to toggle the theme are defined. Child components that need access to the theme can subscribe to the `ThemeContext` and dynamically update their styles based on the current theme.
-  - Example: Suppose you have a theme that needs to be applied to multiple components deep in the component tree. Instead of passing the theme through props at each level, you can use React context to provide the theme globally.
-     ```jsx
-     // ThemeContext.js
-     import React from 'react';
-     const ThemeContext = React.createContext('light');
-     export default ThemeContext;
-
-     // App.js
-     import React from 'react';
-     import ThemeContext from './ThemeContext';
-     import Header from './Header';
-     import MainContent from './MainContent';
-
-     function App() {
-       return (
-         <ThemeContext.Provider value="dark">
-           <Header />
-           <MainContent />
-         </ThemeContext.Provider>
-       );
-     }
-     ```
+      - React context provides a way to pass data through the component tree without having to pass props down manually at every level. It allows components to subscribe to a context and access its value without having to explicitly pass it through each level of the tree.
+     - Example: Suppose you have a theme switcher functionality in your app. You can create a `ThemeContext` using React context, where the theme state (e.g., light or dark) and functions to toggle the theme are defined. Child components that need access to the theme can subscribe to the `ThemeContext` and dynamically update their styles based on the current theme.
+     - Example: Suppose you have a theme that needs to be applied to multiple components deep in the component tree. Instead of passing the theme through props at each level, you can use React context to provide the theme globally.
+        ```jsx
+        // ThemeContext.js
+        import React from 'react';
+        const ThemeContext = React.createContext('light');
+        export default ThemeContext;
+   
+        // App.js
+        import React from 'react';
+        import ThemeContext from './ThemeContext';
+        import Header from './Header';
+        import MainContent from './MainContent';
+   
+        function App() {
+          return (
+            <ThemeContext.Provider value="dark">
+              <Header />
+              <MainContent />
+            </ThemeContext.Provider>
+          );
+        }
+        ```
 
 
 3. **What are different ways to add CSS in your app?**
